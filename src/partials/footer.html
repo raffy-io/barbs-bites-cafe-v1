@@ -1,0 +1,11 @@
+<div x-data="{ shown: false }" x-intersect="shown = true">
+  <section
+    id="section-footer"
+    x-data="{date:new Date().getFullYear()}"
+    class="fixed z-50 bottom-0 left-0 right-0 bg-slate-900 text-slate-50 flex items-center justify-center py-4 font-extralight capitalize"
+    x-show="shown"
+    x-transition.opacity.duration.1200ms
+  >
+    <p>satisfy your cravings @<span x-text="date"></span></p>
+  </section>
+</div>

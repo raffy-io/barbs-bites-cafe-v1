@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- seo helper -->
+    <load
+      src="./src/partials/seo.html"
+      title="Barb's Bites Cafe - Filipino desserts made with love"
+      ogTitle="Barb's Bites Cafe - Filipino desserts made with love"
+      description="Filipino desserts nilupak,biko,ube halaya,cassava cake for sale in San Narciso Zambales"
+      og-image="/images/seo/og-image.jpg"
+      path="/"
+    />
+    <!-- end seo helper -->
+  </head>
+  <body class="font-sans">
+    <header>
+      <load
+        src="./src/partials/main-nav.html"
+        textColor="text-amber-50"
+        active="border-b-amber-600"
+      />
+    </header>
+    <main>
+      <section id="section-hero" x-data="{homepage: $store.homepage}">
+        <div
+          class="relative h-dvh grid place-items-center"
+          x-data="{ shown: false }"
+          x-intersect="shown = true"
+        >
+          <!-- overlay -->
+          <div
+            class="absolute inset-0 w-full h-full z-20 bg-linear-to-t from-black/70 to-black/40"
+          ></div>
+          <!-- end overlay -->
+          <!-- hero-image -->
+          <img
+            src="./src/assets/images/hero.jpg"
+            alt="dessert images"
+            class="absolute inset-0 w-full h-full z-10 object-cover"
+          />
+          <!-- end hero-image -->
+          <!-- hero-text -->
+          <div
+            class="relative z-30 flex flex-col items-center justify-center p-5"
+            x-show="shown"
+            x-transition.opacity.duration.1500ms
+          >
+            <h1
+              x-text="homepage.heading"
+              class="text-center text-4xl md:text-6xl xl:text-8xl font-display text-slate-200 tracking-tighter mb-4"
+            ></h1>
+            <p
+              x-text="homepage.subheading"
+              class="text-slate-200 text-center font-extralight md:text-xl md:w-4/5 lg:w-1/2 xl:text-2xl xl:w-3/4 xl:font-light mb-6"
+            ></p>
+            <!-- link-btn -->
+            <load src="./src/partials/btn-link.html" btnText="get started" />
+            <!-- end link-btn -->
+          </div>
+          <!-- end hero-text -->
+        </div>
+      </section>
+    </main>
+    <footer>
+      <load src="./src/partials/footer.html" />
+    </footer>
+    <script type="module" src="./src/assets/js/main.js"></script>
+  </body>
+</html>

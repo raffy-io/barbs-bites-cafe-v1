@@ -1,0 +1,44 @@
+import "../css/style.css";
+import Alpine from "alpinejs";
+import intersect from "@alpinejs/intersect";
+import homepage from "../../data/homepage.js";
+import products from "../../data/products.js";
+
+window.Alpine = Alpine;
+
+Alpine.plugin(intersect);
+
+document.addEventListener("alpine:init", () => {
+  Alpine.store("homepage", homepage);
+  Alpine.store("products", products);
+
+  Alpine.data("paginate", (initialItems = [], perPage = 10) => ({
+    items: initialItems,
+    currentPage: 1,
+    itemsPerPage: perPage,
+
+    get totalPages() {
+      return Math.ceil(this.items.length / this.itemsPerPage);
+    },
+
+    get pagedItems() {
+      const start = (this.currentPage - 1) * this.itemsPerPage;
+      const end = start + this.itemsPerPage;
+      return this.items.slice(start, end);
+    },
+
+    nextPage() {
+      if (this.currentPage < this.totalPages) this.currentPage++;
+    },
+
+    previousPage() {
+      if (this.currentPage > 1) this.currentPage--;
+    },
+
+    goToPage(page) {
+      if (page >= 1 && page <= this.totalPages) this.currentPage = page;
+    },
+  }));
+});
+
+Alpine.start();
