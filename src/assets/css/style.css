@@ -5,4 +5,11 @@
   /* This is where you define your custom fonts in Tailwind v4 */
   --font-display: "Caprasimo", serif;
   --font-sans: "Poppins", sans-serif;
+  /* Use the --background-image-* prefix for gradients */
+  --background-image-split-gradient: linear-gradient(
+    120deg,
+    rgba(245, 242, 237, 1) 0%,
+    rgba(245, 242, 237, 1) 50%,
+    #f7f7f7 50%
+  );
 }

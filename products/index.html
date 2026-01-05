@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- seo helper -->
+    <load
+      src="../src/partials/seo.html"
+      title="Barb's Bites Cafe - Filipino desserts made with love"
+      ogTitle="Barb's Bites Cafe - Filipino desserts made with love"
+      description="Filipino desserts in San Narciso, Zambales. Homemade Baked Kakanin, Ube Halaya, and Cassava Flan – freshly made by Barb's Bites Cafe."
+      og-image="/images/seo/og-image.jpg"
+      path="/products/"
+    />
+    <!-- end seo helper -->
+  </head>
+  <body class="font-sans">
+    <header>
+      <!-- main-nav -->
+      <load
+        src="../src/partials/main-nav.html"
+        navStyle="text-slate-700 bg-white/15"
+        productsActive="border-b-amber-600"
+      />
+      <!-- end main-nav -->
+      <!-- mobile-nav -->
+      <load
+        src="../src/partials/mobile-nav.html"
+        btnColor="#d97706"
+        productsActive="border-b-amber-600"
+      />
+      <!-- end mobile-nav -->
+    </header>
+    <main>
+      <section
+        id="section-products"
+        class="p-5 pt-24 pb-16 lg:px-24 grid place-items-center xl:h-dvh"
+        x-data="paginate($store.products,3)"
+      >
+        <div x-data="{ shown: false }" x-intersect="shown = true">
+          <h2
+            class="text-5xl text-slate-600 font-display text-center mb-4"
+            x-show="shown"
+            x-transition.opacity.duration.1200ms
+          >
+            Our Humble Menu
+          </h2>
+        </div>
+        <div
+          class="grid md:grid-cols-2 xl:grid-cols-3 gap-4"
+          x-data="{ shown: false }"
+          x-intersect:enter="shown = true"
+          x-intersect:leave="shown = true"
+        >
+          <template x-for="product in pagedItems" :key="product.slug">
+            <!-- card component -->
+            <load
+              src="../src/partials/menu-card.html"
+              image="product.image"
+              alt="product.name"
+              name="product.name"
+              price="product.price"
+              description="product.description"
+              href="`/product/?item=${product.slug}`"
+            />
+            <!-- end card -->
+          </template>
+        </div>
+        <load src="../src/partials/pagination-link.html" />
+      </section>
+    </main>
+    <footer>
+      <load src="../src/partials/footer.html" />
+    </footer>
+    <script type="module" src="../src/assets/js/main.js"></script>
+  </body>
+</html>

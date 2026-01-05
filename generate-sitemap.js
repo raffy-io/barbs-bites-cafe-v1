@@ -2,7 +2,11 @@ import fs from "fs";
 import path from "path";
 
 const DOMAIN = "https://yourdomain.com";
-const PAGES = [{ url: "/", path: "index.html", priority: "1.0" }];
+
+const PAGES = [
+  { url: "/", priority: "1.0", changefreq: "daily" },
+  { url: "/products/", priority: "0.8", changefreq: "weekly" },
+];
 
 const today = new Date().toISOString().split("T")[0];
 const xml = `<?xml version="1.0" encoding="UTF-8"?>

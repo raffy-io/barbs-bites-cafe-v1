@@ -39,6 +39,25 @@ document.addEventListener("alpine:init", () => {
       if (page >= 1 && page <= this.totalPages) this.currentPage = page;
     },
   }));
+
+  Alpine.data("productDetail", () => ({
+    product: null,
+    loaded: false,
+
+    init() {
+      // 1. Get the slug from the URL
+      const params = new URLSearchParams(window.location.search);
+      const currentSlug = params.get("item");
+
+      // 2. Find the match in our data array
+      if (currentSlug) {
+        this.product = products.find((p) => p.slug === currentSlug);
+      }
+
+      // 3. Mark as loaded to show UI
+      this.loaded = true;
+    },
+  }));
 });
 
 Alpine.start();

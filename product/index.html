@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- seo helper -->
+    <load
+      src="../src/partials/seo.html"
+      title="Barb's Bites Cafe - Filipino desserts made with love"
+      ogTitle="Barb's Bites Cafe - Filipino desserts made with love"
+      description="Filipino desserts in San Narciso, Zambales. Homemade Baked Kakanin, Ube Halaya, and Cassava Flan – freshly made by Barb's Bites Cafe."
+      og-image="/images/seo/og-image.jpg"
+      path="/products/"
+    />
+    <!-- end seo helper -->
+  </head>
+  <body class="font-sans">
+    <header>
+      <!-- main-nav -->
+      <load
+        src="../src/partials/main-nav.html"
+        navStyle="text-slate-700 bg-white/15"
+        productsActive="border-b-amber-600"
+      />
+      <!-- end main-nav -->
+      <!-- mobile-nav -->
+      <load
+        src="../src/partials/mobile-nav.html"
+        btnColor="#d97706"
+        productsActive="border-b-amber-600"
+      />
+      <!-- end mobile-nav -->
+    </header>
+    <main>
+      <section
+        id="section-show-product"
+        class="grid place-items-center py-24 md:px-5 xl:px-24 xl:py-24 bg-split-gradient"
+        x-data="{ shown: false }"
+        x-intersect:enter="shown = true"
+        x-intersect:leave="shown = true"
+      >
+        <div x-data="productDetail" x-cloak>
+          <template x-if="product">
+            <div
+              class="grid place-items-center"
+              x-show="shown"
+              x-transition.opacity.duration.2000ms
+            >
+              <div class="lg:w-3/4 xl:w-1/2 mb-5 bg-slate-50 p-1 md:shadow-lg">
+                <div class="rounded-tr rounded-tl overflow-hidden mb-6 h-96">
+                  <img
+                    :src="product.image"
+                    :alt="product.imageAlt"
+                    class="h-full w-full object-cover brightness-90"
+                  />
+                </div>
+                <div class="p-5">
+                  <h1
+                    x-text="product.name"
+                    class="text-2xl font-semibold mb-1"
+                  ></h1>
+                  <p
+                    x-text="product.description"
+                    class="mb-5 font-light text-slate-600"
+                  ></p>
+                  <!-- prices -->
+                  <div class="flex gap-4 mb-8">
+                    <template
+                      x-for="[tier, price] in Object.entries(product.prices)"
+                      :key="tier"
+                    >
+                      <template x-if="price > 0">
+                        <p class="font-semibold capitalize">
+                          <span x-text="tier"></span>: &#x20B1;<span
+                            x-text="price"
+                          ></span>
+                        </p>
+                      </template>
+                    </template>
+                  </div>
+                </div>
+                <!-- end prices -->
+                <!-- btn-links -->
+                <div class="flex items-center justify-between p-5">
+                  <a
+                    href="/products/"
+                    class="flex items-center justify-center capitalize bg-slate-200 px-5 py-2.5 font-medium rounded"
+                    >back</a
+                  >
+                  <load
+                    src="../src/partials/btn-link.html"
+                    btnText="order now"
+                  />
+                </div>
+                <!-- end btn-links -->
+              </div>
+            </div>
+          </template>
+
+          <template x-if="!product && loaded">
+            <div class="error-view">
+              <h1>Product Not Found</h1>
+              <a href="index.html">Return Home</a>
+            </div>
+          </template>
+        </div>
+      </section>
+    </main>
+    <footer>
+      <load src="../src/partials/footer.html" />
+    </footer>
+    <script type="module" src="../src/assets/js/main.js"></script>
+  </body>
+</html>
